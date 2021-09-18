@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.ScreenUtils
+import java.awt.Shape
 import kotlin.random.Random
 
 class UdacityGame : ApplicationAdapter() {
@@ -14,47 +15,25 @@ class UdacityGame : ApplicationAdapter() {
     private val width by lazy { Gdx.graphics.width }
     private val height by lazy { Gdx.graphics.height }
 
-    val human = floatArrayOf(
-            100f, 10f,
-            100f, 50f,
-
-            90f, 50f,
-            90f, 100f,
-
-            100f, 100f,
-            100f, 110f,
-
-            80f, 110f,
-            80f, 130f,
-
-            150f, 130f,
-            150f, 110f,
-
-            130f, 110f,
-            130f, 100f,
-
-            140f, 100f,
-            140f, 50f,
-
-            130f, 50f,
-            130f, 10f,
-
-            117f, 10f,
-            117f, 40f,
-
-            113f, 40f,
-            113f, 10f,
-
-            100f, 10f,
-    )
-
     override fun render() {
         ScreenUtils.clear(Color.BLACK)
         with(shapeRenderer) {
-            begin(ShapeRenderer.ShapeType.Line)
-            polyline(human)
+            setAutoShapeType(true)
+            begin()
+            drawFrame()
+            drawCenter()
             end()
         }
+    }
+
+    fun ShapeRenderer.drawFrame() {
+        set(ShapeRenderer.ShapeType.Line)
+        rect(50f, 50f, width - 100f, height - 100f)
+    }
+
+    fun ShapeRenderer.drawCenter() {
+        set(ShapeRenderer.ShapeType.Filled)
+        rect(width / 2 - 50f, height / 2 - 50f, 100f, 100f)
     }
 
     override fun dispose() {
