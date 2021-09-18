@@ -18,22 +18,10 @@ class UdacityGame : ApplicationAdapter() {
     override fun render() {
         ScreenUtils.clear(Color.BLACK)
         with(shapeRenderer) {
-            setAutoShapeType(true)
-            begin()
-            drawFrame()
-            drawCenter()
+            begin(ShapeRenderer.ShapeType.Filled)
+            circle(50f, 50f, 40f, 1666)
             end()
         }
-    }
-
-    fun ShapeRenderer.drawFrame() {
-        set(ShapeRenderer.ShapeType.Line)
-        rect(50f, 50f, width - 100f, height - 100f)
-    }
-
-    fun ShapeRenderer.drawCenter() {
-        set(ShapeRenderer.ShapeType.Filled)
-        rect(width / 2 - 50f, height / 2 - 50f, 100f, 100f)
     }
 
     override fun dispose() {
