@@ -8,6 +8,10 @@ object DesktopLauncher {
     @JvmStatic
     fun main(arg: Array<String>) {
         val config = LwjglApplicationConfiguration()
+        config.apply {
+            width = 600
+            height = 400
+        }
         LwjglApplication(UdacityGame(), config)
     }
 }
